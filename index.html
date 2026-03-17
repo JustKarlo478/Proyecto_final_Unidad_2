@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biblioteca POO — Sistema de Gestión</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span>class</span> Biblioteca <span>{}</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">Acerca de</a></li>
+      <li><a href="#poo">POO</a></li>
+      <li><a href="#versions">Versiones</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="home">
+    <div>
+      <div class="code-tags fade-in"><span class="t">&lt;</span>proyecto<span class="t">&gt;</span></div>
+
+      <p class="hero-tag fade-in delay-1">PROGRAMACIÓN ORIENTADA A OBJETOS</p>
+
+      <h1 class="hero-title fade-in delay-2">
+        Sistema de<br><span class="accent">Biblioteca</span>
+      </h1>
+
+      <p class="hero-subtitle fade-in delay-3">
+      </p>
+
+      <p class="hero-desc fade-in delay-4">
+        Aplicación de escritorio desarrollada con Java
+      </p>
+
+      <div class="hero-btns fade-in delay-4">
+        <a href="#versions" class="btn btn-outline">Ver versiones</a>
+      </div>
+
+      <div class="code-tags fade-in" style="margin-top:32px"><span class="t">&lt;</span>proyecto<span class="t">&gt;</span></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <span class="section-label">acerca del programa</span>
+        <h2 class="section-title">En qué consiste el sistema?</h2>
+        <p>
+          El Sistema de Biblioteca es una aplicación de escritorio escrita en Java que
+          permite gestionar el catálogo de libros, registrar préstamos a estudiantes,
+          controlar devoluciones y calcular multas por retraso automáticamente.
+        </p>
+        <p>
+          Cuenta con una interfaz gráfica construida con Java Swing dividida en
+          pestañas: Catálogo, Búsqueda, Préstamos, Devolución, Multas y Configuración.
+          Cada libro recibe un ID único y puede ser modificado o buscado desde la GUI.
+        </p>
+        <p>
+          El proyecto está estructurado en 5 clases: <code style="color:var(--accent2)">Libro</code>,
+          <code style="color:var(--accent2)">Prestamo</code>,
+          <code style="color:var(--accent2)">Multa</code>,
+          <code style="color:var(--accent2)">Biblioteca</code> (consola) y
+          <code style="color:var(--accent2)">BibliotecaGUI</code> (interfaz gráfica).
+        </p>
+        <br>
+        <a href="#upload" class="btn btn-outline">Subir mi versión →</a>
+      </div>
+
+      <div class="code-box fade-in delay-2">
+        <span class="code-kw">public class</span> <span class="code-cls">BibliotecaGUI</span>
+        <span style="color:#fff"> extends </span>
+        <span class="code-cls">JFrame</span> {<br>
+        <br>
+        &nbsp;&nbsp;<span class="code-cm">listas de datos del sistema</span><br>
+        &nbsp;&nbsp;<span class="code-kw">private</span> ArrayList&lt;<span class="code-cls">Libro</span>&gt; catalogo;<br>
+        &nbsp;&nbsp;<span class="code-kw">private</span> ArrayList&lt;<span class="code-cls">Prestamo</span>&gt; prestamos;<br>
+        &nbsp;&nbsp;<span class="code-kw">private</span> ArrayList&lt;<span class="code-cls">Multa</span>&gt; multas;<br>
+        <br>
+        &nbsp;&nbsp;<span class="code-cm">configuracion del sistema</span><br>
+        &nbsp;&nbsp;<span class="code-kw">private int</span> diasPlazo = <span class="code-num">7</span>;<br>
+        &nbsp;&nbsp;<span class="code-kw">private double</span> multaPorDia = <span class="code-num">5.0</span>;<br>
+        <br>
+        &nbsp;&nbsp;<span class="code-kw">public</span> <span class="code-fn">BibliotecaGUI</span>() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-fn">setTitle</span>(<span class="code-str">"Sistema de Biblioteca"</span>);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-fn">setSize</span>(<span class="code-num">900</span>, <span class="code-num">580</span>);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-fn">setVisible</span>(<span class="code-kw">true</span>);<br>
+        &nbsp;&nbsp;}<br>
+        }
+      </div>
+    </div>
+  </section>
+  <section id="poo">
+    <div style="max-width:1100px;margin:0 auto">
+      <span class="section-label fade-in">fundamentos</span>
+      <h2 class="section-title fade-in">Los 4 pilares de POO aplicados</h2>
+      <p class="section-desc fade-in">
+        Cada clase del proyecto refleja uno o más principios de la Programación
+        Orientada a Objetos. Así es como se aplican:
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-card fade-in delay-1">
+          <span class="feature-icon">{ }</span>
+          <h3>Encapsulamiento</h3>
+          <p>
+            Los atributos de <code style="color:var(--accent)">Libro</code>,
+            <code style="color:var(--accent)">Prestamo</code> y
+            <code style="color:var(--accent)">Multa</code> son
+            <code>private</code>. Solo se accede a ellos mediante getters y setters
+            que validan los datos antes de guardarlos.
+          </p>
+        </div>
+
+        <div class="feature-card fade-in delay-2">
+          <span class="feature-icon">↑</span>
+          <h3>Herencia</h3>
+          <p>
+            <code style="color:var(--accent)">BibliotecaGUI</code> extiende de
+            <code>JFrame</code>, heredando toda la funcionalidad de una ventana
+            de Swing sin tener que construirla desde cero.
+          </p>
+        </div>
+
+        <div class="feature-card fade-in delay-3">
+          <span class="feature-icon">≡</span>
+          <h3>Polimorfismo</h3>
+          <p>
+            El método <code>toString()</code> está sobrescrito en las tres clases
+            modelo (<code>Libro</code>, <code>Prestamo</code>, <code>Multa</code>),
+            cada una con su propia representación en texto.
+          </p>
+        </div>
+
+        <div class="feature-card fade-in delay-4">
+          <span class="feature-icon">◈</span>
+          <h3>Abstracción</h3>
+          <p>
+            La clase <code style="color:var(--accent)">Biblioteca</code> abstrae
+            toda la lógica del negocio: registrar, prestar, devolver y calcular
+            multas, sin que la GUI tenga que saber cómo funciona por dentro.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="versions">
+    <div class="versions-header fade-in">
+      <span class="section-label">// integrantes del equipo</span>
+      <h2 class="section-title">Versiones del proyecto</h2>
+      <p class="section-desc">
+        Cada integrante desarrolló su propia versión del sistema aplicando los
+        conceptos de Programación Orientada a Objetos vistos en clase.
+      </p>
+    </div>
+
+    <!-- ==================================================
+         VERSION PRINCIPAL
+    ================================================== -->
+    <div class="version-card fade-in">
+      <div class="version-header">
+        <span class="version-id">v0.0 · PRINCIPAL</span>
+        <h3 class="version-name">Biblioteca — Versión Principal</h3>
+        <a href="#" class="btn btn-orange" data-version="principal"
+           onclick="descargarVersion('principal'); return false;">
+          ↓ Descargar .zip
+        </a>
+      </div>
+      <div class="version-body">
+        <div class="version-info">
+          <h4>Descripción</h4>
+          <p>
+            Versión base del sistema de biblioteca. Incluye las clases
+            Libro, Prestamo, Multa, Biblioteca (consola) y BibliotecaGUI
+            (interfaz gráfica Swing) con todas las funcionalidades: registro,
+            préstamo, devolución, búsqueda por ID/título/autor y modificación
+            de libros.
+          </p>
+        </div>
+        <div class="version-conclusion">
+          <h4>Conclusión del equipo</h4>
+          <p class="conclusion-text">
+            Este proyecto nos ayudo a poder mejorarlo a mas no poder
+            todos realizamos una gran parte del desarrollo del programa
+            El encargado de realizar el menu grafico fue Jean Karlo
+            El encargado de poner ideas para llevarse a cabo fue hector
+            El encargado de la creacion del diagrama de Clases fue Jose
+            El encargado de investigar informacion sobre las librerias fue raquel
+            El encargado de buscar problemas y corregirlos fue Carlos
+            El encargado de realizar busquedas necesarias para complementar las librerias fue Uriel
+          </p>
+        </div>
+      </div>
+      <div class="version-footer">
+        <span class="version-meta">Java 23 · Swing · 5 clases · NetBeans</span>
+      </div>
+    </div>
+
+    <!-- ==================================================
+         VERSION RAQUEL
+    ================================================== -->
+    <div class="version-card fade-in delay-1">
+      <div class="version-header">
+        <span class="version-id">v1.0 · INTEGRANTE</span>
+        <h3 class="version-name">Biblioteca — Versión Raquel</h3>
+        <a href="#" class="btn btn-green" data-version="raquel"
+           onclick="descargarVersion('raquel'); return false;">
+          Descargar .zip
+        </a>
+      </div>
+      <div class="version-body">
+        <div class="version-info">
+          <h4>Descripción</h4>
+          <!--
+            INSTRUCCION: edita el <p> de abajo con la descripcion
+            real de lo que Raquel modificó o aportó en su version.
+          -->
+          <p>
+            .
+          </p>
+        </div>
+        <div class="version-conclusion">
+          <h4>Conclusión personal</h4>
+          <!--
+            INSTRUCCION: reemplaza el parrafo de abajo con la
+            conclusion REAL escrita por Raquel. Solo edita el
+            texto entre las etiquetas <p class="conclusion-text">
+            y </p>. No borres las etiquetas.
+            =====================================================
+            CONCLUSION - RAQUEL
+          -->
+          <p class="conclusion-text">
+            .
+          </p>
+        </div>
+      </div>
+      <div class="version-footer">
+        <span class="version-meta">Java 23 · Swing · NetBeans</span>
+      </div>
+    </div>
+
+    <!-- ==================================================
+         VERSION CARLOS
+    ================================================== -->
+    <div class="version-card fade-in delay-2">
+      <div class="version-header">
+        <span class="version-id">v1.1 · INTEGRANTE</span>
+        <h3 class="version-name">Biblioteca — Versión Carlos</h3>
+        <a href="#" class="btn btn-green" data-version="carlos"
+           onclick="descargarVersion('carlos'); return false;">
+          ↓ Descargar .zip
+        </a>
+      </div>
+      <div class="version-body">
+        <div class="version-info">
+          <h4>Descripción</h4>
+          <!--
+            INSTRUCCION: edita el <p> de abajo con la descripcion
+            real de lo que Carlos modificó o aportó en su version.
+          -->
+          <p>
+            .
+          </p>
+        </div>
+        <div class="version-conclusion">
+          <h4>Conclusión personal</h4>
+          <!--
+            INSTRUCCION: reemplaza el parrafo de abajo con la
+            conclusion REAL escrita por Carlos.
+            =====================================================
+            CONCLUSION - CARLOS
+          -->
+          <p class="conclusion-text">
+            .
+          </p>
+        </div>
+      </div>
+      <div class="version-footer">
+        <span class="version-meta">Java 23 · Swing · NetBeans</span>
+      </div>
+    </div>
+    <div class="version-card fade-in delay-3">
+      <div class="version-header">
+        <span class="version-id">v1.2 · INTEGRANTE</span>
+        <h3 class="version-name">Biblioteca — Versión Jose</h3>
+        <a href="#" class="btn btn-green" data-version="jose"
+           onclick="descargarVersion('jose'); return false;">
+          Descargar .zip
+        </a>
+      </div>
+      <div class="version-body">
+        <div class="version-info">
+          <h4>Descripción</h4>
+          <p>
+            .
+          </p>
+        </div>
+        <div class="version-conclusion">
+          <h4>Conclusión personal</h4>
+          <p class="conclusion-text">
+            Durante la elaboración de este proyecto logré reforzar mis conocimientos en programación, 
+            comprendiendo mejor cómo se estructuran las clases, atributos y métodos dentro de un sistema. 
+            A diferencia de otros ejercicios, en este caso pude desarrollar un programa completo y funcional, 
+            aplicando correctamente lo aprendido en clase.
+            Cada integrante trabajó en su propia versión, 
+            pero en mi caso logré integrar todas las partes necesarias para que el sistema funcionara adecuadamente. 
+            Uno de los retos principales fue el manejo de las fechas, ya que es un tema que aún no dominamos completamente, 
+            sin embargo, investigué por mi cuenta para poder implementarlo.
+
+          </p>
+        </div>
+      </div>
+      <div class="version-footer">
+        <span class="version-meta">Java 23 · Swing · NetBeans</span>
+      </div>
+    </div>
+    <div class="version-card fade-in delay-4">
+      <div class="version-header">
+        <span class="version-id">v1.3 · INTEGRANTE</span>
+        <h3 class="version-name">Biblioteca — Versión Hector</h3>
+        <a href="#" class="btn btn-green" data-version="hector"
+           onclick="descargarVersion('hector'); return false;">
+          ↓ Descargar .zip
+        </a>
+      </div>
+      <div class="version-body">
+        <div class="version-info">
+          <h4>Descripción</h4>
+          <p>
+            Versión personal desarrollada por Hector. Se concentra en
+            mejorar la experiencia del usuario ofreciendo un interfaz sencillo y no muy complicado
+          </p>
+        </div>
+        <div class="version-conclusion">
+          <h4>Conclusión personal</h4>
+          <p class="conclusion-text">
+            Bueno primero entendí varias funciones y como es que se desarrollan, 
+            cada uno de los integrantes de equipo hizo su propia versión y aun que la mía no fue la más completa el programa fue realizado por mí y con lo aprendido de clases sin usar ninguna ayuda externa, 
+            se me complico mucho en ingresar las fechas ya que eso no lo hemos visto, aun que vi videos y cosas por el estilo quisiera aprender más sobre eso, aun que hay cosas que ya entiendo pero se me dificultan explicar, a la hora de hacer el
+            programa si se que realiza y si se cómo se pone o que función cumple en cada una de ellas, la herramienta en la que se programa igual ayuda mucho a que le entiendas ya que indica exactamente el error.
+
+          </p>
+        </div>
+      </div>
+      <div class="version-footer">
+        <span class="version-meta">Java 23 · Swing · NetBeans</span>
+      </div>
+    </div>
+    <div class="version-card fade-in delay-4">
+      <div class="version-header">
+        <span class="version-id">v1.4 · INTEGRANTE</span>
+        <h3 class="version-name">Biblioteca — Versión Jean Karlo</h3>
+        <a href="#" class="btn btn-green" data-version="jeankarlo"
+           onclick="descargarVersion('jeankarlo'); return false;">
+          Descargar .zip
+        </a>
+      </div>
+      <div class="version-body">
+        <div class="version-info">
+          <h4>Descripción</h4>
+          <p>
+            Versión personal desarrollada por Jean Karlo. Explora la
+            relación entre las clases del sistema y refuerza cómo el
+            diseño orientado a objetos facilita la expansión del programa
+            sin romper la funcionalidad existente.
+          </p>
+        </div>
+        <div class="version-conclusion">
+          <h4>Conclusión personal</h4>
+
+          <p class="conclusion-text">
+            Al principio me sostuve al no avanzar demasiado por que esta vez queria aprender por mi propia cuenta
+            aprendi demasiadas cosas nuevas a lo que respecta cambio de chip sobre la Programacion Orientada a Objetos
+            Lo que seria la mejora muy notoria gracias a las Clases de la profesora, lo cual me inspiro a poder mejorar mas.
+            La forma en la que enseño en sus clases, fueron muy claras y aunque cometa errores, se que gracias a la enseñanza de la profesora
+            se que puedo mejorar poco a poco mi proyecto junto a mi equipo, mi proyecto tiene noches de desvelo, incluso hasta hice un Live en tik tok :v (Nada que ver pero me parecio graciosa la anecdota).
+            tambien con base de investigaciones logre mejorar mas mi version del proyecto, como agregar las fechas etc..
+            realmente fue una experiencia muy divertida, ojala poder seguir mejorando el proyecto a mas no poder, y si esto se podria lograr, seria gracias al esfuerzo del equipo y de la profe que se esfuerza cada dia para enseñarnos.
+            
+          </p>
+        </div>
+      </div>
+      <div class="version-footer">
+        <span class="version-meta">Java 23 · Swing · NetBeans</span>
+      </div>
+    </div>
+        <div class="version-card fade-in delay-4">
+      <div class="version-header">
+        <span class="version-id">v1.5 · INTEGRANTE</span>
+        <h3 class="version-name">Biblioteca — Versión Uriel</h3>
+        <a href="#" class="btn btn-green" data-version="uriel"
+           onclick="descargarVersion('uriel'); return false;">
+          ↓ Descargar .zip
+        </a>
+      </div>
+      <div class="version-body">
+        <div class="version-info">
+          <h4>Descripción</h4>
+          <!--
+            INSTRUCCION: edita el <p> de abajo con la descripcion
+            real de lo que Uriel modificó o aportó en su version.
+          -->
+          <p>
+            .
+          </p>
+        </div>
+        <div class="version-conclusion">
+          <h4>Conclusión personal</h4>
+          <!--
+            INSTRUCCION: reemplaza el parrafo de abajo con la
+            conclusion REAL escrita por Uriel.
+            =====================================================
+            CONCLUSION - URIEL
+          -->
+          <p class="conclusion-text">
+            .
+          </p>
+        </div>
+      </div>
+      <div class="version-footer">
+        <span class="version-meta">Java 23 · Swing · NetBeans</span>
+      </div>
+    </div>
+
+  </section>
+  <footer>
+    <div class="footer-logo">class Biblioteca {}</div>
+    <p>
+      Programación Orientada a Objetos · Java · Swing<br>
+    </p>
+  </footer>
+
+  <script src="zips-data.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
