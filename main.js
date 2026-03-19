@@ -1,7 +1,7 @@
 // ============================================================
 // main.js — Biblioteca POO
-// Lógica principal: cursor, animaciones, subida de archivo
-// y descarga de zips embebidos en base64
+// Lógica principal: cursor, animaciones, subida de archivo,
+// descarga de zips embebidos en base64 y galería de diagramas
 // ============================================================
 
 // ---- clase Cursor (referencia a instanciacion de objetos POO) ----
@@ -16,7 +16,7 @@ class Cursor {
 
   init() {
     document.addEventListener('mousemove', (e) => this.move(e));
-    const interactivos = document.querySelectorAll('a, button, .btn, .version-card, .feature-card, label');
+    const interactivos = document.querySelectorAll('a, button, .btn, .version-card, .feature-card, label, .member-tab, .diagram-img-wrap');
     interactivos.forEach(el => {
       el.addEventListener('mouseenter', () => this.activarHover());
       el.addEventListener('mouseleave', () => this.desactivarHover());
@@ -86,7 +86,10 @@ class Uploader {
     this.input     = document.getElementById('fileInput');
     this.resultado = document.getElementById('uploadResult');
     this.btnUpload = document.getElementById('btnUpload');
-    this.init();
+    // Solo inicializar si los elementos existen en el HTML
+    if (this.area && this.input && this.resultado && this.btnUpload) {
+      this.init();
+    }
   }
 
   init() {
@@ -212,6 +215,48 @@ function actualizarAnio() {
   if (el) el.textContent = new Date().getFullYear();
 }
 
+// ============================================================
+// GALERÍA DE DIAGRAMAS — funciones nuevas
+// ============================================================
+
+/**
+ * showDiagram(name, btn)
+ * Muestra el panel del integrante seleccionado.
+ * Llamado desde los onclick de los botones tab en el HTML.
+ */
+function showDiagram(name, btn) {
+  document.querySelectorAll('.diagram-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.member-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('diag-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+/**
+ * openOverlay(wrapper)
+ * Abre la imagen en pantalla completa.
+ * Si el panel solo tiene un placeholder (sin <img>), no hace nada.
+ */
+function openOverlay(wrapper) {
+  const img = wrapper.querySelector('img');
+  if (!img) return;
+  document.getElementById('overlayImg').src = img.src;
+  document.getElementById('imgOverlay').classList.add('open');
+}
+
+/**
+ * closeOverlay()
+ * Cierra el overlay. También se cierra con la tecla Escape.
+ */
+function closeOverlay() {
+  document.getElementById('imgOverlay').classList.remove('open');
+}
+
+// Cerrar overlay con Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeOverlay();
+});
+
+// ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {
   new Cursor();
   new AnimacionEntrada('.fade-in');
