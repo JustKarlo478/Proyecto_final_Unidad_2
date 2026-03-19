@@ -1,10 +1,8 @@
 // ============================================================
 // main.js — Biblioteca POO
-// Lógica principal: cursor, animaciones, subida de archivo,
-// descarga de zips embebidos en base64 y galería de diagramas
 // ============================================================
 
-// ---- clase Cursor (referencia a instanciacion de objetos POO) ----
+// ---- Cursor ----
 class Cursor {
   constructor() {
     this.dot    = document.getElementById('cursor');
@@ -16,7 +14,9 @@ class Cursor {
 
   init() {
     document.addEventListener('mousemove', (e) => this.move(e));
-    const interactivos = document.querySelectorAll('a, button, .btn, .version-card, .feature-card, label, .member-tab, .diagram-img-wrap');
+    const interactivos = document.querySelectorAll(
+      'a, button, .btn, .version-card, .feature-card, label, .member-tab, .diagram-img-wrap'
+    );
     interactivos.forEach(el => {
       el.addEventListener('mouseenter', () => this.activarHover());
       el.addEventListener('mouseleave', () => this.desactivarHover());
@@ -54,7 +54,7 @@ class Cursor {
   }
 }
 
-// ---- clase AnimacionEntrada ----
+// ---- AnimacionEntrada ----
 class AnimacionEntrada {
   constructor(selector) {
     this.elementos = document.querySelectorAll(selector);
@@ -79,14 +79,13 @@ class AnimacionEntrada {
   }
 }
 
-// ---- clase Uploader ----
+// ---- Uploader ----
 class Uploader {
   constructor() {
     this.area      = document.getElementById('uploadArea');
     this.input     = document.getElementById('fileInput');
     this.resultado = document.getElementById('uploadResult');
     this.btnUpload = document.getElementById('btnUpload');
-    // Solo inicializar si los elementos existen en el HTML
     if (this.area && this.input && this.resultado && this.btnUpload) {
       this.init();
     }
@@ -130,8 +129,7 @@ class Uploader {
   }
 }
 
-// ---- descarga de zips embebidos en base64 ----
-// zipData viene de zips-data.js que se carga antes que este script
+// ---- Descarga de zips embebidos en base64 ----
 function descargarVersion(id) {
   const version = zipData[id];
 
@@ -142,12 +140,15 @@ function descargarVersion(id) {
 
   const btn = document.querySelector('[data-version="' + id + '"]');
 
-  // si el zip todavia no esta disponible mostramos aviso
   if (!version.disponible || !version.data) {
     if (btn) {
       const original = btn.textContent;
       btn.textContent = 'No disponible aun';
-      setTimeout(() => { btn.textContent = original; }, 2000);
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.disabled = false;
+      }, 2000);
     }
     return;
   }
@@ -158,23 +159,28 @@ function descargarVersion(id) {
     btn.disabled = true;
 
     setTimeout(() => {
-      // decodificar base64 a bytes y crear Blob descargable
-      const byteChars = atob(version.data);
-      const byteNums  = new Array(byteChars.length);
-      for (let i = 0; i < byteChars.length; i++) {
-        byteNums[i] = byteChars.charCodeAt(i);
-      }
-      const blob = new Blob([new Uint8Array(byteNums)], { type: 'application/zip' });
-      const url  = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href     = url;
-      link.download = version.nombre;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
+      try {
+        const byteChars = atob(version.data);
+        const byteNums  = new Array(byteChars.length);
+        for (let i = 0; i < byteChars.length; i++) {
+          byteNums[i] = byteChars.charCodeAt(i);
+        }
+        const blob = new Blob([new Uint8Array(byteNums)], { type: 'application/zip' });
+        const url  = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href     = url;
+        link.download = version.nombre;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
 
-      btn.textContent = 'Descargado';
+        btn.textContent = 'Descargado ✓';
+      } catch (e) {
+        console.error('Error al descargar:', e);
+        btn.textContent = 'Error al descargar';
+      }
+
       setTimeout(() => {
         btn.textContent = original;
         btn.disabled = false;
@@ -183,9 +189,11 @@ function descargarVersion(id) {
   }
 }
 
-// ---- navegacion suave ----
+// ---- Navegacion suave ----
+// IMPORTANTE: excluir los botones de descarga (data-version) para que no
+// intercepten el onclick="descargarVersion(...)"
 function iniciarNavegacion() {
-  document.querySelectorAll('a[href^="#"]').forEach(enlace => {
+  document.querySelectorAll('a[href^="#"]:not([data-version])').forEach(enlace => {
     enlace.addEventListener('click', (e) => {
       e.preventDefault();
       const destino = document.querySelector(enlace.getAttribute('href'));
@@ -194,7 +202,7 @@ function iniciarNavegacion() {
   });
 }
 
-// ---- scroll spy ----
+// ---- Scroll spy ----
 function iniciarScrollSpy() {
   const secciones = document.querySelectorAll('section[id]');
   const links     = document.querySelectorAll('.nav-links a');
@@ -215,15 +223,7 @@ function actualizarAnio() {
   if (el) el.textContent = new Date().getFullYear();
 }
 
-// ============================================================
-// GALERÍA DE DIAGRAMAS — funciones nuevas
-// ============================================================
-
-/**
- * showDiagram(name, btn)
- * Muestra el panel del integrante seleccionado.
- * Llamado desde los onclick de los botones tab en el HTML.
- */
+// ---- Galeria de diagramas ----
 function showDiagram(name, btn) {
   document.querySelectorAll('.diagram-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.member-tab').forEach(t => t.classList.remove('active'));
@@ -231,11 +231,6 @@ function showDiagram(name, btn) {
   btn.classList.add('active');
 }
 
-/**
- * openOverlay(wrapper)
- * Abre la imagen en pantalla completa.
- * Si el panel solo tiene un placeholder (sin <img>), no hace nada.
- */
 function openOverlay(wrapper) {
   const img = wrapper.querySelector('img');
   if (!img) return;
@@ -243,15 +238,10 @@ function openOverlay(wrapper) {
   document.getElementById('imgOverlay').classList.add('open');
 }
 
-/**
- * closeOverlay()
- * Cierra el overlay. También se cierra con la tecla Escape.
- */
 function closeOverlay() {
   document.getElementById('imgOverlay').classList.remove('open');
 }
 
-// Cerrar overlay con Escape
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeOverlay();
 });
