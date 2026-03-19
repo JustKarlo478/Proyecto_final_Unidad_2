@@ -18,6 +18,7 @@
     <ul class="nav-links">
       <li><a href="#about">Acerca de</a></li>
       <li><a href="#poo">POO</a></li>
+      <li><a href="#diagramas">Diagramas</a></li>
       <li><a href="#versions">Versiones</a></li>
     </ul>
   </nav>
@@ -32,8 +33,7 @@
         Sistema de<br><span class="accent">Biblioteca</span>
       </h1>
 
-      <p class="hero-subtitle fade-in delay-3">
-      </p>
+      <p class="hero-subtitle fade-in delay-3"></p>
 
       <p class="hero-desc fade-in delay-4">
         Aplicación de escritorio desarrollada con Java
@@ -95,6 +95,7 @@
       </div>
     </div>
   </section>
+
   <section id="poo">
     <div style="max-width:1100px;margin:0 auto">
       <span class="section-label fade-in">fundamentos</span>
@@ -116,7 +117,6 @@
             que validan los datos antes de guardarlos.
           </p>
         </div>
-
         <div class="feature-card fade-in delay-2">
           <span class="feature-icon">↑</span>
           <h3>Herencia</h3>
@@ -126,7 +126,6 @@
             de Swing sin tener que construirla desde cero.
           </p>
         </div>
-
         <div class="feature-card fade-in delay-3">
           <span class="feature-icon">≡</span>
           <h3>Polimorfismo</h3>
@@ -136,7 +135,6 @@
             cada una con su propia representación en texto.
           </p>
         </div>
-
         <div class="feature-card fade-in delay-4">
           <span class="feature-icon">◈</span>
           <h3>Abstracción</h3>
@@ -150,6 +148,159 @@
     </div>
   </section>
 
+  <!-- ============================================================
+       SECCIÓN DIAGRAMAS DE CLASES
+  ============================================================ -->
+  <section id="diagramas">
+    <div class="versions-header fade-in">
+      <span class="section-label">// estructura del código</span>
+      <h2 class="section-title">Diagramas de Clases</h2>
+      <p class="section-desc">
+        Explora el diagrama UML de cada integrante.
+        Haz clic en la imagen para verla en pantalla completa.
+      </p>
+    </div>
+
+    <!-- Tabs — no tocar los onclick, solo el texto visible si renombras -->
+    <div class="member-tabs fade-in">
+      <button class="member-tab active" onclick="showDiagram('principal', this)">Principal</button>
+      <button class="member-tab" onclick="showDiagram('raquel',    this)">Raquel</button>
+      <button class="member-tab" onclick="showDiagram('carlos',    this)">Carlos</button>
+      <button class="member-tab" onclick="showDiagram('jose',      this)">Jose</button>
+      <button class="member-tab" onclick="showDiagram('hector',    this)">Hector</button>
+      <button class="member-tab" onclick="showDiagram('jeankarlo', this)">Jean Karlo</button>
+      <button class="member-tab" onclick="showDiagram('uriel',     this)">Uriel</button>
+    </div>
+
+    <!-- ── PRINCIPAL ──
+         ✏️ Pon tu imagen: quita el comentario del <img> y cambia el src.
+         🗑️ Borra el bloque diagram-placeholder cuando tengas imagen real.
+    -->
+    <div class="diagram-panel active" id="diag-principal">
+      <p class="diagram-panel-title">v0.0 · Versión Principal</p>
+      <div class="diagram-img-wrap" onclick="openOverlay(this)">
+        <!-- <img src="imagenes/diagrama-principal.png" alt="Diagrama — Principal"> -->
+        <div class="diagram-placeholder">
+          <span class="ph-icon">🖼️</span>
+          <span class="ph-text">// SUBE TU IMAGEN AQUÍ — cambia el src del &lt;img&gt;</span>
+        </div>
+      </div>
+      <div class="diagram-footer">
+        <span class="diagram-footer-label">Nota</span>
+        <!-- ✏️ Cambia este texto si quieres -->
+        <p>Versión base con 5 clases: Libro, Prestamo, Multa y BibliotecaGUI.</p>
+      </div>
+    </div>
+
+    <!-- ── RAQUEL ── -->
+    <div class="diagram-panel" id="diag-raquel">
+      <p class="diagram-panel-title">v1.0 · Versión Raquel</p>
+      <div class="diagram-img-wrap" onclick="openOverlay(this)">
+        <!-- <img src="imagenes/diagrama-raquel.png" alt="Diagrama — Raquel"> -->
+        <div class="diagram-placeholder">
+          <span class="ph-icon">🖼️</span>
+          <span class="ph-text">// SUBE TU IMAGEN AQUÍ — cambia el src del &lt;img&gt;</span>
+        </div>
+      </div>
+      <div class="diagram-footer">
+        <span class="diagram-footer-label">Nota</span>
+        <!-- ✏️ Cambia este texto -->
+        <p>Estructura con clase Biblioteca como modelo de datos y Controladora para la lógica del menú.</p>
+      </div>
+    </div>
+
+    <!-- ── CARLOS ── -->
+    <div class="diagram-panel" id="diag-carlos">
+      <p class="diagram-panel-title">v1.1 · Versión Carlos</p>
+      <div class="diagram-img-wrap" onclick="openOverlay(this)">
+        <!-- <img src="imagenes/diagrama-carlos.png" alt="Diagrama — Carlos"> -->
+        <div class="diagram-placeholder">
+          <span class="ph-icon">🖼️</span>
+          <span class="ph-text">// SUBE TU IMAGEN AQUÍ — cambia el src del &lt;img&gt;</span>
+        </div>
+      </div>
+      <div class="diagram-footer">
+        <span class="diagram-footer-label">Nota</span>
+        <!-- ✏️ Cambia este texto -->
+        <p>Versión revisada con énfasis en validaciones y robustez de la lógica de multas.</p>
+      </div>
+    </div>
+
+    <!-- ── JOSE ── -->
+    <div class="diagram-panel" id="diag-jose">
+      <p class="diagram-panel-title">v1.2 · Versión Jose</p>
+      <div class="diagram-img-wrap" onclick="openOverlay(this)">
+        <!-- <img src="imagenes/diagrama-jose.png" alt="Diagrama — Jose"> -->
+        <div class="diagram-placeholder">
+          <span class="ph-icon">🖼️</span>
+          <span class="ph-text">// SUBE TU IMAGEN AQUÍ — cambia el src del &lt;img&gt;</span>
+        </div>
+      </div>
+      <div class="diagram-footer">
+        <span class="diagram-footer-label">Nota</span>
+        <!-- ✏️ Cambia este texto -->
+        <p>Sistema completo con manejo de fechas mediante LocalDate.</p>
+      </div>
+    </div>
+
+    <!-- ── HECTOR ── -->
+    <div class="diagram-panel" id="diag-hector">
+      <p class="diagram-panel-title">v1.3 · Versión Hector</p>
+      <div class="diagram-img-wrap" onclick="openOverlay(this)">
+        <!-- <img src="imagenes/diagrama-hector.png" alt="Diagrama — Hector"> -->
+        <div class="diagram-placeholder">
+          <span class="ph-icon">🖼️</span>
+          <span class="ph-text">// SUBE TU IMAGEN AQUÍ — cambia el src del &lt;img&gt;</span>
+        </div>
+      </div>
+      <div class="diagram-footer">
+        <span class="diagram-footer-label">Nota</span>
+        <!-- ✏️ Cambia este texto -->
+        <p>Diseño simplificado enfocado en la claridad de la interfaz.</p>
+      </div>
+    </div>
+
+    <!-- ── JEAN KARLO ── -->
+    <div class="diagram-panel" id="diag-jeankarlo">
+      <p class="diagram-panel-title">v1.4 · Versión Jean Karlo</p>
+      <div class="diagram-img-wrap" onclick="openOverlay(this)">
+        <!-- <img src="imagenes/diagrama-jeankarlo.png" alt="Diagrama — Jean Karlo"> -->
+        <div class="diagram-placeholder">
+          <span class="ph-icon">🖼️</span>
+          <span class="ph-text">// SUBE TU IMAGEN AQUÍ — cambia el src del &lt;img&gt;</span>
+        </div>
+      </div>
+      <div class="diagram-footer">
+        <span class="diagram-footer-label">Nota</span>
+        <!-- ✏️ Cambia este texto -->
+        <p>Versión más completa de la GUI con todas las pestañas y soporte de LocalDate.</p>
+      </div>
+    </div>
+
+    <!-- ── URIEL ── -->
+    <div class="diagram-panel" id="diag-uriel">
+      <p class="diagram-panel-title">v1.5 · Versión Uriel</p>
+      <div class="diagram-img-wrap" onclick="openOverlay(this)">
+        <!-- <img src="imagenes/diagrama-uriel.png" alt="Diagrama — Uriel"> -->
+        <div class="diagram-placeholder">
+          <span class="ph-icon">🖼️</span>
+          <span class="ph-text">// SUBE TU IMAGEN AQUÍ — cambia el src del &lt;img&gt;</span>
+        </div>
+      </div>
+      <div class="diagram-footer">
+        <span class="diagram-footer-label">Nota</span>
+        <!-- ✏️ Cambia este texto -->
+        <p>Enfoque sencillo con la multa integrada dentro de Prestamo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overlay zoom — NO TOCAR -->
+  <div class="img-overlay" id="imgOverlay" onclick="closeOverlay()">
+    <span class="overlay-close" onclick="closeOverlay()">✕</span>
+    <img id="overlayImg" src="" alt="Diagrama ampliado">
+  </div>
+
   <section id="versions">
     <div class="versions-header fade-in">
       <span class="section-label">// integrantes del equipo</span>
@@ -160,9 +311,6 @@
       </p>
     </div>
 
-    <!-- ==================================================
-         VERSION PRINCIPAL
-    ================================================== -->
     <div class="version-card fade-in">
       <div class="version-header">
         <span class="version-id">v0.0 · PRINCIPAL</span>
@@ -202,9 +350,6 @@
       </div>
     </div>
 
-    <!-- ==================================================
-         VERSION RAQUEL
-    ================================================== -->
     <div class="version-card fade-in delay-1">
       <div class="version-header">
         <span class="version-id">v1.0 · INTEGRANTE</span>
@@ -217,13 +362,7 @@
       <div class="version-body">
         <div class="version-info">
           <h4>Descripción</h4>
-          <!--
-            INSTRUCCION: edita el <p> de abajo con la descripcion
-            real de lo que Raquel modificó o aportó en su version.
-          -->
-          <p>
-            .
-          </p>
+          <p>.</p>
         </div>
         <div class="version-conclusion">
           <h4>Conclusión personal</h4>
@@ -246,9 +385,6 @@
       </div>
     </div>
 
-    <!-- ==================================================
-         VERSION CARLOS
-    ================================================== -->
     <div class="version-card fade-in delay-2">
       <div class="version-header">
         <span class="version-id">v1.1 · INTEGRANTE</span>
@@ -261,31 +397,19 @@
       <div class="version-body">
         <div class="version-info">
           <h4>Descripción</h4>
-          <!--
-            INSTRUCCION: edita el <p> de abajo con la descripcion
-            real de lo que Carlos modificó o aportó en su version.
-          -->
-          <p>
-            .
-          </p>
+          <p>.</p>
         </div>
         <div class="version-conclusion">
           <h4>Conclusión personal</h4>
-          <!--
-            INSTRUCCION: reemplaza el parrafo de abajo con la
-            conclusion REAL escrita por Carlos.
-            =====================================================
-            CONCLUSION - CARLOS
-          -->
-          <p class="conclusion-text">
-            .
-          </p>
+          <!-- CONCLUSION - CARLOS -->
+          <p class="conclusion-text">.</p>
         </div>
       </div>
       <div class="version-footer">
         <span class="version-meta">Java 23 · Swing · NetBeans</span>
       </div>
     </div>
+
     <div class="version-card fade-in delay-3">
       <div class="version-header">
         <span class="version-id">v1.2 · INTEGRANTE</span>
@@ -298,9 +422,7 @@
       <div class="version-body">
         <div class="version-info">
           <h4>Descripción</h4>
-          <p>
-            .
-          </p>
+          <p>.</p>
         </div>
         <div class="version-conclusion">
           <h4>Conclusión personal</h4>
@@ -313,7 +435,6 @@
             pero en mi caso logré integrar todas las partes necesarias para que el sistema funcionara adecuadamente. 
             Uno de los retos principales fue el manejo de las fechas, ya que es un tema que aún no dominamos completamente, 
             sin embargo, investigué por mi cuenta para poder implementarlo.
-
           </p>
         </div>
       </div>
@@ -321,6 +442,7 @@
         <span class="version-meta">Java 23 · Swing · NetBeans</span>
       </div>
     </div>
+
     <div class="version-card fade-in delay-4">
       <div class="version-header">
         <span class="version-id">v1.3 · INTEGRANTE</span>
@@ -345,7 +467,6 @@
             cada uno de los integrantes de equipo hizo su propia versión y aun que la mía no fue la más completa el programa fue realizado por mí y con lo aprendido de clases sin usar ninguna ayuda externa, 
             se me complico mucho en ingresar las fechas ya que eso no lo hemos visto, aun que vi videos y cosas por el estilo quisiera aprender más sobre eso, aun que hay cosas que ya entiendo pero se me dificultan explicar, a la hora de hacer el
             programa si se que realiza y si se cómo se pone o que función cumple en cada una de ellas, la herramienta en la que se programa igual ayuda mucho a que le entiendas ya que indica exactamente el error.
-
           </p>
         </div>
       </div>
@@ -353,6 +474,7 @@
         <span class="version-meta">Java 23 · Swing · NetBeans</span>
       </div>
     </div>
+
     <div class="version-card fade-in delay-4">
       <div class="version-header">
         <span class="version-id">v1.4 · INTEGRANTE</span>
@@ -374,7 +496,6 @@
         </div>
         <div class="version-conclusion">
           <h4>Conclusión personal</h4>
-
           <p class="conclusion-text">
             Al principio me sostuve al no avanzar demasiado por que esta vez queria aprender por mi propia cuenta
             aprendi demasiadas cosas nuevas a lo que respecta cambio de chip sobre la Programacion Orientada a Objetos
@@ -383,7 +504,6 @@
             se que puedo mejorar poco a poco mi proyecto junto a mi equipo, mi proyecto tiene noches de desvelo, incluso hasta hice un Live en tik tok :v (Nada que ver pero me parecio graciosa la anecdota).
             tambien con base de investigaciones logre mejorar mas mi version del proyecto, como agregar las fechas etc..
             realmente fue una experiencia muy divertida, ojala poder seguir mejorando el proyecto a mas no poder, y si esto se podria lograr, seria gracias al esfuerzo del equipo y de la profe que se esfuerza cada dia para enseñarnos.
-            
           </p>
         </div>
       </div>
@@ -391,7 +511,8 @@
         <span class="version-meta">Java 23 · Swing · NetBeans</span>
       </div>
     </div>
-        <div class="version-card fade-in delay-4">
+
+    <div class="version-card fade-in delay-4">
       <div class="version-header">
         <span class="version-id">v1.5 · INTEGRANTE</span>
         <h3 class="version-name">Biblioteca — Versión Uriel</h3>
@@ -403,9 +524,7 @@
       <div class="version-body">
         <div class="version-info">
           <h4>Descripción</h4>
-          <p>
-            .
-          </p>
+          <p>.</p>
         </div>
         <div class="version-conclusion">
           <h4>Conclusión personal</h4>
@@ -426,6 +545,7 @@
     </div>
 
   </section>
+
   <footer>
     <div class="footer-logo">class Biblioteca {}</div>
     <p>
